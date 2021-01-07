@@ -1,26 +1,30 @@
-var http = require('http'),
-    fileSystem = require('fs'),
-    path = require('path');
 
-http.createServer(function (request, response) {
+
+
+const express = require('express')
+const fileSystem = require('fs')
+const path = require('path')
+const { send } = require('process')
+
+const app = express()
+
+app.get("/", (req, res) => {
+    console.log(req.query)
     var filePath = path.join("./", 'sound.mp3');
     var stat = fileSystem.statSync(filePath);
+    var readStream = fileSystem.createReadStream(filePath);
 
-
-    response.writeHead(200, {
+    res.status(200).header({
         'Content-Type': 'audio/mpeg',
         'Content-Length': stat.size,
         'Accept-Ranges': 'bytes'
-
-    });
-
-    var readStream = fileSystem.createReadStream(filePath,);
-    readStream.on('data', function (data) {
-        response.write(data);
-    });
+    })
 
     readStream.on('end', function () {
-        response.end();
+        console.log('stream ended...');
     });
+
+    readStream.pipe(res);
 })
-    .listen(2000);
+
+app.listen(2000)

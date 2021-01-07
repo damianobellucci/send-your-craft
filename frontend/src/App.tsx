@@ -9,8 +9,8 @@ function App() {
     <>
       <div className="App">
         <AudioPlayer
-          autoPlay
-          src="http://localhost:2000/"
+          autoPlay={false}
+          src="http://localhost:2000?ciao=ciao"
           onPlay={(e) => console.log("onPlay")}
           // other props here
         />
