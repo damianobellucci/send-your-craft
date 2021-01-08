@@ -8,12 +8,12 @@ function App() {
   return (
     <>
       <div className="App">
-        <AudioPlayer
-          autoPlay={false}
-          src="http://localhost:2000?ciao=ciao"
-          onPlay={(e) => console.log("onPlay")}
-          // other props here
-        />
+        <audio controls preload="none">
+          <source
+            src="http://localhost:2000?ciao=ciao"
+            type="audio/mpeg"
+          ></source>
+        </audio>
       </div>
     </>
   );

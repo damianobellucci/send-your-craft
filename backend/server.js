@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
     res.status(200).header({
         'Content-Type': 'audio/mpeg',
-        'Content-Length': stat.size,
+        'Content-Length': stat.size, //reasong why i send suddenly all the file
         'Accept-Ranges': 'bytes'
     })
 
