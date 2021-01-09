@@ -8,7 +8,7 @@ function App() {
       <div className="App">
         <audio controls preload="metadata">
           <source
-            src="http://localhost:2000?ciao=ciao"
+            src="http://localhost:2000?idFile=sound2"
             type="audio/mpeg"
           ></source>
         </audio>
