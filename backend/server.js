@@ -1,30 +1,24 @@
-
-
-
-const express = require('express')
-const fileSystem = require('fs')
-const path = require('path')
-const { send } = require('process')
-
-const app = express()
+const express = require("express");
+const fileSystem = require("fs");
+const path = require("path");
+const app = express();
 
 app.get("/", (req, res) => {
-    console.log(req.query)
-    var filePath = path.join("./", 'sound.mp3');
-    var stat = fileSystem.statSync(filePath);
-    var readStream = fileSystem.createReadStream(filePath);
+  let idFile = req.query.idFile
+  let filePath = path.join('./', idFile + '.mp3');
 
-    res.status(200).header({
-        'Content-Type': 'audio/mpeg',
-        'Content-Length': stat.size, //reasong why i send suddenly all the file
-        'Accept-Ranges': 'bytes'
-    })
+  let stat = fileSystem.statSync(filePath);
 
-    readStream.on('end', function () {
-        console.log('stream ended...');
-    });
+  //header in response to the client, says how to transfer the datas
+  res.status(200).header({
+    "Content-Type": "audio/mpeg",
+    "Content-Length": stat.size,
+    "Accept-Ranges": "bytes",
+  });
 
-    readStream.pipe(res);
-})
+  let readStream = fileSystem.createReadStream(filePath);
+  readStream.pipe(res);
+});
 
-app.listen(2000)
+app.listen(2000);
+
