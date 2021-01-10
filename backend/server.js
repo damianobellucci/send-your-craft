@@ -25,7 +25,6 @@ app.get("/", (req, res) => {
       "Content-Range": `bytes ${start}-${end}/${stat.size}`
     }
     res.status(206).header(headers);
-
     let readStream = fileSystem.createReadStream(filePath, { start, end });
     readStream.pipe(res);
   }
