@@ -1,28 +1,22 @@
-const { MongoClient } = require('mongodb');
-const loginInfo = require("./LOGIN_INFO")
+const insertSongInfo = require("./insertSongInfo")
 
-async function listDatabases(client) {
-    databasesList = await client.db().admin().listDatabases();
+const express = require("express")
+const app = express()
 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-async function main() {
-    const uri = `mongodb://${loginInfo.username}:${loginInfo.password}@localhost:2718`;
-    const client = new MongoClient(uri);
-
+app.get("/", async function (req, res) {
     try {
-        // Connect to the MongoDB cluster
-        await client.connect();
-        // Make the appropriate DB calls
-        await listDatabases(client);
-
+        const myObj = {
+            title: "prova titolo",
+            description: "prova descrizione"
+        }
+        await insertSongInfo(myObj)
+        res.send("ok")
     } catch (e) {
         console.error(e);
-    } finally {
-        await client.close();
+        res.send("fail")
     }
-}
+})
 
-main().catch(console.error);
+app.listen(5000)
+
+
