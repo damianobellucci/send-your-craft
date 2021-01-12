@@ -26,14 +26,11 @@ var app = express();
 })();
 
 // Reuse database object in requests
-app.get("/", async function (req, res) {
-  const myObj = {
-    title: "prova titolo",
-    description: "prova descrizione"
-  }
+app.post("/", async function (req, res) {
+  console.log(req.body)
   try {
-    let result = await db.collection("infoSongs").insertOne(myObj);
-    console.log(result)
+    /*     let result = await db.collection("infoSongs").insertOne(myObj);
+        console.log(result) */
     res.send("ok")
   }
   catch (e) {
@@ -42,3 +39,15 @@ app.get("/", async function (req, res) {
   }
 });
 //https://stackoverflow.com/questions/47370487/node-js-mongodb-driver-async-await-queries
+
+/* app.post('/api/upload', (req, res, next) => {
+  const form = formidable({ multiples: true });
+
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.json({ fields, files });
+  });
+}); */
