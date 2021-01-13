@@ -12,6 +12,14 @@ function App() {
             type="audio/mpeg"
           ></source>
         </audio>
+        <form
+          action="http://localhost:5000/"
+          method="post"
+          encType="multipart/form-data"
+        >
+          <input type="file" name="filetoupload"></input>
+          <input type="submit"></input>
+        </form>
       </div>
     </>
   );
