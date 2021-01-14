@@ -17,7 +17,7 @@ function App() {
           method="post"
           encType="multipart/form-data"
         >
-          <input type="file" name="filetoupload"></input>
+          <input type="file" name="filetoupload" accept="audio/*"></input>
           <input type="submit"></input>
         </form>
       </div>
