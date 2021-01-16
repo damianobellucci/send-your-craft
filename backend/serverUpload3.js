@@ -15,8 +15,8 @@ app.post("/", function (req, res) {
         var newpath = "./" + files.filetoupload.name;
         fs.rename(oldpath, newpath, function (err) {
           if (err) throw err;
-          res.write('File uploaded and moved!');
-          res.end();
+          res.header("Access-Control-Allow-Origin", "*");
+          res.status(200).send('File uploaded and moved!');
         });
       }
     })
