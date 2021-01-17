@@ -12,8 +12,8 @@ class FileInput extends React.Component {
 
   handleSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
-    alert(`Selected file - ${this.fileInput.current.files[0].name}`);
-    const url = "http://localhost:5000";
+    //alert(`Selected file - ${this.fileInput.current.files[0].name}`);
+    const url = "http://localhost:5000/upload";
     console.log(this.fileInput.current.files[0].name);
 
     const formData = new FormData();
