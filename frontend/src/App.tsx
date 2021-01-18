@@ -1,27 +1,19 @@
-import React from "react";
+import * as React from "react";
+//style
 import "./App.css";
-import "react-h5-audio-player/lib/styles.css";
+//components
 import FileInput from "./FileInput";
+import Stream from "./Stream";
 
 function App() {
+  const myRef = React.useRef<HTMLInputElement>(null);
+
   return (
     <>
       <div className="App">
-        <audio controls preload="metadata">
-          <source
-            src="http://localhost:2000?idFile=sound2"
-            type="audio/mpeg"
-          ></source>
-        </audio>
-        {/*         <form
-          action="http://localhost:5000/"
-          method="post"
-          encType="multipart/form-data"
-        >
-          <input type="file" name="filetoupload" accept="audio/*"></input>
-          <input type="submit"></input>
-        </form> */}
+        <Stream></Stream>
         <FileInput></FileInput>
+        <input type="text" ref={myRef} />
       </div>
     </>
   );
