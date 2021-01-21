@@ -9,7 +9,8 @@
     "path": "^0.12.7"
   },
   "scripts": {
-    "start": "node ./src/index.tsx",
+    "start": "nodemon node ./src/index.js",
     "test": ""
-  }
+  },
+  "type":"module"
 }

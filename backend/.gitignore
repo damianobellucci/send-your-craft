@@ -1,6 +1,6 @@
 node_modules
 sound.mp3
 sound2.mp3
-LOGIN_INFO.js
+config.js
 songs
 streamRouters.js

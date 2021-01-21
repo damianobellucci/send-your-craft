@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 var router = express.Router()
-const path = require("path")
-const fileSystem = require("fs")
+import path from "path"
+import fileSystem from "fs"
 
 router.get("/", (req, res) => {
     const range = req.headers.range;
@@ -30,4 +30,4 @@ router.get("/", (req, res) => {
     }
 });
 
-module.exports = router
+export default router

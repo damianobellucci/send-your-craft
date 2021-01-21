@@ -1,13 +1,20 @@
-//init router
-const express = require("express");
-var router = express.Router()
-const util = require('util')
+//init mongo db client
+import Connection from "../lib/db-mongo/Connection.js";
+let mongo = null;
+(async function () {
+    mongo = await Connection.connectToMongo();
+})()
 
-//manage forme
-var fs = require("fs")
-const fsRename = util.promisify(fs.rename)
-var formidable = require('formidable');
-var form = new formidable.IncomingForm();
+//init router
+import express from "express";
+var router = express.Router()
+
+//manage form
+import { rename } from "fs";
+import { promisify } from 'util';
+const fsRename = promisify(rename)
+import IncomingForm from 'formidable';
+var form = new IncomingForm();
 
 router.post("/", async function (req, res) {
     try {
@@ -20,7 +27,7 @@ router.post("/", async function (req, res) {
                 let myObj = {
                     'name': files.filetoupload.name
                 }
-                await req.app.get("mongo").collection("infoSongs").insertOne(myObj);
+                mongo.db("sendyourcraft").collection("infoSongs").insertOne(myObj)
                 res.header("Access-Control-Allow-Origin", "*");
                 res.status(200).send('File uploaded and moved!');
             }
@@ -32,4 +39,4 @@ router.post("/", async function (req, res) {
     }
 });
 
-module.exports = router
+export default router
