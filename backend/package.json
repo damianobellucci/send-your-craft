@@ -12,5 +12,5 @@
     "start": "nodemon node ./src/index.js",
     "test": ""
   },
-  "type":"module"
+  "type": "module"
 }
